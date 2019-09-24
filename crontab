@@ -1,1 +1,1 @@
-@daily backup-docker-db prox-prod prox-project-service project-db project-service project-db
+@daily /home/nas/archilab-backup/backup-docker-db prox-prod prox-project-service project-db project-service project-db
