@@ -6,9 +6,8 @@ service_name="$3"
 db_user="$4"
 db_name="$5"
 
-ssh -t "${host_name}" "bash -s" -- \
-    < ./dump-docker-db "${stack_name}" "${service_name}" "${db_user}" "${db_name}"
+ssh -t "${host_name}" "bash -s" -- < dump-docker-db "${stack_name}" "${service_name}" "${db_user}" "${db_name}"
 
 scp -3 -r "${host_name}":~/backup archilab-nas:~/
 
-ssh -t "${host_name}" 'rm ~/backup/*'
+ssh -t "${host_name}" "rm ~/backup/*"

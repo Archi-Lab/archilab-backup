@@ -9,8 +9,6 @@ backup_date="$6"
 
 scp -3 archilab-nas:~/backup/"${service_name}_${backup_date}.sql" "${host_name}":~/backup/
 
-ssh -t "${host_name}" "bash -s" -- \
-    < ./restore-docker-db "${stack_name}" "${service_name}" "${db_user}" "${db_name}" \
-    "${backup_date}"
+ssh -t "${host_name}" "bash -s" -- < ./restore-docker-db "${stack_name}" "${service_name}" "${db_user}" "${db_name}" "${backup_date}"
 
 ssh -t "${host_name}" "rm ~/backup/*"
