@@ -5,11 +5,16 @@ stack_name="$2"
 service_name="$3"
 db_user="$4"
 db_name="$5"
+backup_dir="~/backup/${host_name}"
+
+ssh "${host_name}" "[ -d ~/bin ] || mkdir ~/bin"
 
 scp "dump-docker-db" "${host_name}:~/bin/"
 
-ssh "${host_name}" "~/bin/dump-docker-db" "${stack_name}" "${service_name}" "${db_user}" "${db_name}"
+ssh "${host_name}" "~/bin/dump-docker-db" "${host_name}" "${stack_name}" "${service_name}" "${db_user}" "${db_name}"
 
-scp -3 -r "${host_name}:~/backup/*" "archilab-nas:~/${host_name}/"
+ssh "archilab-nas" "[ -d ${backup_dir} ] || mkdir -p ${backup_dir}"
 
-ssh "${host_name}" "rm ~/backup/*"
+scp -3 -r "${host_name}:${backup_dir}/*" "archilab-nas:${backup_dir}/"
+
+ssh "${host_name}" "rm ${backup_dir}/*"

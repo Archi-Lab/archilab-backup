@@ -1,15 +1,17 @@
 #!/usr/bin/env bash
 
-stack_name="$1"
-service_name="$2"
-db_user="$3"
-db_name="$4"
-backup_date="$5"
+host_name="$1"
+stack_name="$2"
+service_name="$3"
+db_user="$4"
+db_name="$5"
+backup_date="$6"
 instance_number=1
 stack_service="${stack_name}_${service_name}"
 stack_service_instance="${stack_service}.${instance_number}"
 task_id="$(docker service ps ${stack_service} -q --no-trunc | head -n1)"
+backup_dir="~/backup/${host_name}"
 
 {
   docker exec "${stack_service_instance}.${task_id}" psql -U "${db_user}" "${db_name}"
-} < "backup/${service_name}_${backup_date}.sql"
+} < "${backup_dir}/${service_name}_${backup_date}.sql"
