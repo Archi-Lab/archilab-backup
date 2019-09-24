@@ -12,8 +12,8 @@ scp "dump-docker-db" "${host_name}:\${HOME}/bin/"
 
 ssh "${host_name}" "\${HOME}/bin/dump-docker-db" "${host_name}" "${stack_name}" "${service_name}" "${db_user}" "${db_name}"
 
-ssh "archilab-nas" "mkdir -p \${HOME}/${host_name}"
+ssh "archilab-nas" "mkdir -p \${HOME}/backup/${host_name}"
 
-scp -3 -r "${host_name}:\${HOME}/${host_name}/*" "archilab-nas:\${HOME}/${host_name}/"
+scp -3 -r "${host_name}:\${HOME}/backup/${host_name}/*" "archilab-nas:\${HOME}/backup/${host_name}/"
 
-ssh "${host_name}" "rm \${HOME}/${host_name}/*"
+ssh "${host_name}" "rm \${HOME}/backup/${host_name}/*"
