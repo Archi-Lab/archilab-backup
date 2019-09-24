@@ -12,7 +12,7 @@ task_id="$(docker service ps ${stack_service} -q --no-trunc | head -n1)"
 current_date="$(date +%Y-%m-%d)"
 backup_dir="${HOME}/backup/${host_name}"
 
-[ -d "${backup_dir}" ] || mkdir -p "${backup_dir}"
+mkdir -p "${backup_dir}"
 
 {
   docker exec "${stack_service_instance}.${task_id}" pg_dump -U "${db_user}" -c "${db_name}"

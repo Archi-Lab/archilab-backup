@@ -6,16 +6,15 @@ service_name="$3"
 db_user="$4"
 db_name="$5"
 backup_date="$6"
-backup_dir="${HOME}/backup/${host_name}"
 
-ssh "${host_name}" "[ -d ${HOME}/bin ] || mkdir ${HOME}/bin"
+ssh "${host_name}" "mkdir \${HOME}/bin"
 
-scp "restore-docker-db-dump" "${host_name}:${HOME}/bin/"
+scp "restore-docker-db-dump" "${host_name}:\${HOME}/bin/"
 
-ssh "archilab-nas" "[ -d ${backup_dir} ] || mkdir -p ${backup_dir}"
+ssh "archilab-nas" "mkdir -p \${HOME}/${host_name}"
 
-scp -3 "archilab-nas:${backup_dir}/${service_name}_${backup_date}.sql" "${host_name}:${backup_dir}"
+scp -3 "archilab-nas:\${HOME}/${host_name}/${service_name}_${backup_date}.sql" "${host_name}:\${HOME}/${host_name}"
 
-ssh "${host_name}" "~/bin/restore-docker-db-dump" "${stack_name}" "${service_name}" "${db_user}" "${db_name}" "${backup_date}"
+ssh "${host_name}" "\${HOME}/bin/restore-docker-db-dump" "${stack_name}" "${service_name}" "${db_user}" "${db_name}" "${backup_date}"
 
-ssh "${host_name}" "rm ${backup_dir}/*"
+ssh "${host_name}" "rm \${HOME}/${host_name}/*"
