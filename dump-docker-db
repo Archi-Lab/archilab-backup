@@ -11,6 +11,7 @@ task_id="$(docker service ps ${stack_service} -q --no-trunc | head -n1)"
 current_date="$(date +%Y-%m-%d)"
 
 [ -d backup ] || mkdir backup
+pwd
 ls -lah ~
 {
   docker exec -it "${stack_service_instance}.${task_id}" pg_dump -U "${db_user}" -c "${db_name}"
