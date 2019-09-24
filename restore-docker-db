@@ -6,11 +6,11 @@ service_name="$3"
 db_user="$4"
 db_name="$5"
 backup_date="$6"
-backup_dir="~/backup/${host_name}"
+backup_dir="${HOME}/backup/${host_name}"
 
-ssh "${host_name}" "[ -d bin ] || mkdir bin"
+ssh "${host_name}" "[ -d ${HOME}/bin ] || mkdir ${HOME}/bin"
 
-scp "restore-docker-db-dump" "${host_name}:~/bin/"
+scp "restore-docker-db-dump" "${host_name}:${HOME}/bin/"
 
 ssh "archilab-nas" "[ -d ${backup_dir} ] || mkdir -p ${backup_dir}"
 

@@ -10,7 +10,7 @@ instance_number=1
 stack_service="${stack_name}_${service_name}"
 stack_service_instance="${stack_service}.${instance_number}"
 task_id="$(docker service ps ${stack_service} -q --no-trunc | head -n1)"
-backup_dir="~/backup/${host_name}"
+backup_dir="${HOME}/backup/${host_name}"
 
 {
   docker exec "${stack_service_instance}.${task_id}" psql -U "${db_user}" "${db_name}"
