@@ -8,8 +8,8 @@ db_name="$5"
 
 scp dump-docker-db "${host_name}:~/bin"
 
-ssh -t "${host_name}" ~/bin/dump-docker-db "${stack_name}" "${service_name}" "${db_user}" "${db_name}"
+ssh "${host_name}" ~/bin/dump-docker-db "${stack_name}" "${service_name}" "${db_user}" "${db_name}"
 
 scp -3 -r "${host_name}":~/backup archilab-nas:~/
 
-ssh -t "${host_name}" "rm ~/backup/*"
+ssh "${host_name}" "rm ~/backup/*"
