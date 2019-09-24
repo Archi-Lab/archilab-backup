@@ -7,7 +7,7 @@ db_user="$4"
 db_name="$5"
 backup_date="$6"
 
-ssh "${host_name}" "mkdir \${HOME}/bin"
+ssh "${host_name}" "mkdir -p \${HOME}/bin"
 
 scp "restore-docker-db-dump" "${host_name}:\${HOME}/bin/"
 
