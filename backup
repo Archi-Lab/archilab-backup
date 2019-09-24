@@ -11,7 +11,7 @@ stack_service_instance="${stack_service}.${instance_number}"
 task_id="$(docker service ps ${stack_service} -q --no-trunc | head -n1)"
 current_date="$(date +%Y-%m-%d)"
 
-ssh "${host_name}" << EOF
+ssh "${host_name}" -T << EOF
 [ -d backup ] || mkdir backup
 
 {
