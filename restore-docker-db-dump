@@ -12,4 +12,4 @@ task_id="$(docker service ps ${stack_service} -q --no-trunc | head -n1)"
 
 {
   docker exec "${stack_service_instance}.${task_id}" psql -U "${db_user}" "${db_name}"
-} < "~/backup/${service_name}_${backup_date}.sql"
+} < "backup/${service_name}_${backup_date}.sql"

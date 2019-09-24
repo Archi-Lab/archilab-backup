@@ -14,4 +14,4 @@ current_date="$(date +%Y-%m-%d)"
 
 {
   docker exec "${stack_service_instance}.${task_id}" pg_dump -U "${db_user}" -c "${db_name}"
-} > "~/backup/${service_name}_${current_date}.sql"
+} > "backup/${service_name}_${current_date}.sql"
