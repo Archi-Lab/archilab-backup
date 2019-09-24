@@ -12,4 +12,4 @@ ssh "${host_name}" ~/bin/dump-docker-db "${stack_name}" "${service_name}" "${db_
 
 scp -3 -r "${host_name}":~/backup archilab-nas:~/
 
-ssh "${host_name}" "rm ~/backup/*"
+# ssh "${host_name}" "rm ~/backup/*"
