@@ -1,2 +1,4 @@
 @daily /home/nas/archilab-backup/backup-docker-db prox-prod prox-project-service project-db project-service project-db
 @daily /home/nas/archilab-backup/backup-docker-db prox-prod prox-module-service module-db module-service module-db
+@daily /home/nas/archilab-backup/backup-docker-db coalbase-prod coalbase-comment postgres comment comment
+@daily /home/nas/archilab-backup/backup-docker-db coalbase-prod coalbase-learning-outcome postgres learning_outcome learning_outcome
