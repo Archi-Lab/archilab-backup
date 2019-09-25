@@ -12,9 +12,9 @@ ssh "${host_name}" "mkdir -p \${HOME}/bin"
 
 scp "${HOME}/archilab-backup/restore-docker-db-dump" "${host_name}:\${HOME}/bin/"
 
-ssh "archilab-nas" "mkdir -p \${HOME}/backup/${host_name}"
+ssh "${host_name}" "mkdir -p \${HOME}/backup/${host_name}"
 
-scp -3 "archilab-nas:\${HOME}/backup/${host_name}/${stack_service}_${backup_date}.sql" "${host_name}:\${HOME}/backup/${host_name}"
+scp -3 "archilab-nas:\${HOME}/backup/${host_name}/${stack_service}_${backup_date}.sql" "${host_name}:\${HOME}/backup/${host_name}/"
 
 ssh "${host_name}" "\${HOME}/bin/restore-docker-db-dump" "${host_name}" "${stack_name}" "${service_name}" "${db_user}" "${db_name}" "${backup_date}"
 
