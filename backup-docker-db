@@ -8,7 +8,7 @@ db_name="$5"
 
 ssh "${host_name}" "mkdir -p \${HOME}/bin"
 
-scp "dump-docker-db" "${host_name}:\${HOME}/bin/"
+scp "${HOME}/archilab-backup/dump-docker-db" "${host_name}:\${HOME}/bin/"
 
 ssh "${host_name}" "\${HOME}/bin/dump-docker-db" "${host_name}" "${stack_name}" "${service_name}" "${db_user}" "${db_name}"
 

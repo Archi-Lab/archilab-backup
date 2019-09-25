@@ -9,7 +9,7 @@ backup_date="$6"
 
 ssh "${host_name}" "mkdir -p \${HOME}/bin"
 
-scp "restore-docker-db-dump" "${host_name}:\${HOME}/bin/"
+scp "${HOME}/archilab-backup/restore-docker-db-dump" "${host_name}:\${HOME}/bin/"
 
 ssh "archilab-nas" "mkdir -p \${HOME}/backup/${host_name}"
 
