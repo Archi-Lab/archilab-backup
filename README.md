@@ -44,6 +44,18 @@ ${HOME}/archilab-backup/restore-docker-db.sh prox-prod prox-project-service proj
 ${HOME}/archilab-backup/backup-vault-data.sh
 ```
 
+`restore-vault-data.sh` copies an archive file of a specific date from our NAS to `archilab-vault` via scp, connects to it via SSH and restores Vault's data directory from the archive file:
+
+```bash
+${HOME}/archilab-backup/restore-vault-data.sh <DATE>
+```
+
+Example:
+
+```bash
+${HOME}/archilab-backup/restore-vault-data.sh 2019-09-25
+```
+
 ## Automatic Backups
 
 `crontab` contains scheduled backup tasks to automatically execute the backup
