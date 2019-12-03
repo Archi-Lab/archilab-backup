@@ -13,6 +13,8 @@ ssh "${vault_host}" << EOF
     sudo systemctl start vault vault-unseal
 EOF
 
+ssh "${nas_host}" "mkdir -p ${backup_dir}"
+
 scp -3 "${vault_host}:${backup_file}" "${nas_host}:${backup_file}"
 
 ssh "${vault_host}" "rm -rf ${backup_dir}"
