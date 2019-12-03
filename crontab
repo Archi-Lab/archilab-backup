@@ -1,8 +1,8 @@
-@daily /home/nas/archilab-backup/backup-docker-db prox-prod prox-project-service project-db project-service project-db
-@daily /home/nas/archilab-backup/backup-docker-db prox-prod prox-module-service module-db module-service module-db
-@daily /home/nas/archilab-backup/backup-docker-db prox-dev prox-project-service project-db project-service project-db
-@daily /home/nas/archilab-backup/backup-docker-db prox-dev prox-module-service module-db module-service module-db
-@daily /home/nas/archilab-backup/backup-docker-db prox-gp-ws2019 prox-project-service project-db project-service project-db
-@daily /home/nas/archilab-backup/backup-docker-db prox-gp-ws2019 prox-module-service module-db module-service module-db
-@daily /home/nas/archilab-backup/backup-docker-db coalbase-prod coalbase-comment postgres comment comment
-@daily /home/nas/archilab-backup/backup-docker-db coalbase-prod coalbase-learning-outcome postgres learning_outcome learning_outcome
+@daily /home/nas/archilab-backup/backup-docker-db.sh prox-prod prox-project-service project-db project-service project-db
+@daily /home/nas/archilab-backup/backup-docker-db.sh prox-prod prox-module-service module-db module-service module-db
+@daily /home/nas/archilab-backup/backup-docker-db.sh prox-dev prox-project-service project-db project-service project-db
+@daily /home/nas/archilab-backup/backup-docker-db.sh prox-dev prox-module-service module-db module-service module-db
+@daily /home/nas/archilab-backup/backup-docker-db.sh prox-gp-ws2019 prox-project-service project-db project-service project-db
+@daily /home/nas/archilab-backup/backup-docker-db.sh prox-gp-ws2019 prox-module-service module-db module-service module-db
+@daily /home/nas/archilab-backup/backup-docker-db.sh coalbase-prod coalbase-comment postgres comment comment
+@daily /home/nas/archilab-backup/backup-docker-db.sh coalbase-prod coalbase-learning-outcome postgres learning_outcome learning_outcome

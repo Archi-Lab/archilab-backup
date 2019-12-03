@@ -9,9 +9,9 @@ backup_dir="\${HOME}/${host_name}/${stack_name}/${service_name}"
 
 ssh "${host_name}" "mkdir -p \${HOME}/bin"
 
-scp "${HOME}/archilab-backup/dump-docker-db" "${host_name}:\${HOME}/bin/"
+scp "${HOME}/archilab-backup/dump-docker-db.sh" "${host_name}:\${HOME}/bin/"
 
-ssh "${host_name}" "\${HOME}/bin/dump-docker-db" "${host_name}" "${stack_name}" "${service_name}" "${db_user}" "${db_name}"
+ssh "${host_name}" "\${HOME}/bin/dump-docker-db.sh" "${host_name}" "${stack_name}" "${service_name}" "${db_user}" "${db_name}"
 
 ssh "archilab-nas" "mkdir -p ${backup_dir}"
 

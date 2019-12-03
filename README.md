@@ -8,32 +8,40 @@ All scripts make use of the \${HOME} environment variable. To make them work
 this git repo has to be cloned to the home directory of the user running the
 backups.
 
-`backup-docker-db` connects to another host via SSH, creates a SQL dump file
+`backup-docker-db.sh` connects to another host via SSH, creates a SQL dump file
 from a Postgres database running inside a Docker swarm service and copies it to
 our NAS via scp:
 
 ```bash
-${HOME}/archilab-backup/backup-docker-db <HOST_NAME> <STACK_NAME> <SERVICE_NAME> <DB_USER> <DB_NAME>
+${HOME}/archilab-backup/backup-docker-db.sh <HOST_NAME> <STACK_NAME> <SERVICE_NAME> <DB_USER> <DB_NAME>
 ```
 
 Example:
 
 ```bash
-${HOME}/archilab-backup/backup-docker-db prox-prod prox-project-service project-db project-service project-db
+${HOME}/archilab-backup/backup-docker-db.sh prox-prod prox-project-service project-db project-service project-db
 ```
 
-`restore-docker-db` copies a SQL dump file of a specific date from our NAS to
+`restore-docker-db.sh` copies a SQL dump file of a specific date from our NAS to
 another host via scp, connects to the host via SSH and restores a Postgres
 database running inside a Docker swarm service from the dump file:
 
 ```bash
-${HOME}/archilab-backup/restore-docker-db <HOST_NAME> <STACK_NAME> <SERVICE_NAME> <DB_USER> <DB_NAME> <DATE>
+${HOME}/archilab-backup/restore-docker-db.sh <HOST_NAME> <STACK_NAME> <SERVICE_NAME> <DB_USER> <DB_NAME> <DATE>
 ```
 
 Example:
 
 ```bash
-${HOME}/archilab-backup/restore-docker-db prox-prod prox-project-service project-db project-service project-db 2019-09-25
+${HOME}/archilab-backup/restore-docker-db.sh prox-prod prox-project-service project-db project-service project-db 2019-09-25
+```
+
+## Backup Vault
+
+`backup-vault-data.sh` connects to `archilab-vault` via SSH, creates an archive file from Vault's data directory and copies it to our NAS via scp:
+
+```bash
+${HOME}/archilab-backup/backup-vault-data.sh
 ```
 
 ## Automatic Backups
