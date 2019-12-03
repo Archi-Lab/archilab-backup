@@ -12,8 +12,9 @@ task_id="$(docker service ps ${stack_service} -q --no-trunc | head -n1)"
 current_date="$(date +%Y-%m-%d)"
 backup_dir="${HOME}/${host_name}/${stack_name}/${service_name}"
 
-mkdir -p "${backup_dir}"
+mkdir --parents "${backup_dir}"
 
 {
-  docker exec "${stack_service_instance}.${task_id}" pg_dump -U "${db_user}" -c "${db_name}"
+  docker exec "${stack_service_instance}.${task_id}" \
+    pg_dump --username="${db_user}" --clean "${db_name}"
 } > "${backup_dir}/${stack_service}_${current_date}.sql"

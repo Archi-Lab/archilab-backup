@@ -13,5 +13,6 @@ task_id="$(docker service ps ${stack_service} -q --no-trunc | head -n1)"
 backup_dir="${HOME}/${host_name}/${stack_name}/${service_name}"
 
 {
-  docker exec -i "${stack_service_instance}.${task_id}" psql -U "${db_user}" "${db_name}"
+  docker exec -i "${stack_service_instance}.${task_id}" \
+    psql --username "${db_user}" "${db_name}"
 } < "${backup_dir}/${stack_service}_${backup_date}.sql"

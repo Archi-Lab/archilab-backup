@@ -7,13 +7,14 @@ db_user="$4"
 db_name="$5"
 backup_dir="\${HOME}/${host_name}/${stack_name}/${service_name}"
 
-ssh "${host_name}" "mkdir -p \${HOME}/bin"
+ssh "${host_name}" "mkdir --parents \${HOME}/bin"
 
 scp "${HOME}/archilab-backup/dump-docker-db.sh" "${host_name}:\${HOME}/bin/"
 
-ssh "${host_name}" "\${HOME}/bin/dump-docker-db.sh" "${host_name}" "${stack_name}" "${service_name}" "${db_user}" "${db_name}"
+ssh "${host_name}" "\${HOME}/bin/dump-docker-db.sh" "${host_name}" "${stack_name}" \
+    "${service_name}" "${db_user}" "${db_name}"
 
-ssh "archilab-nas" "mkdir -p ${backup_dir}"
+ssh "archilab-nas" "mkdir --parents ${backup_dir}"
 
 scp -3 -r "${host_name}:${backup_dir}/*" "archilab-nas:${backup_dir}/"
 

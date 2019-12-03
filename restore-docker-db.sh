@@ -9,14 +9,16 @@ backup_date="$6"
 stack_service="${stack_name}_${service_name}"
 backup_dir="\${HOME}/${host_name}/${stack_name}/${service_name}"
 
-ssh "${host_name}" "mkdir -p \${HOME}/bin"
+ssh "${host_name}" "mkdir --parents \${HOME}/bin"
 
 scp "${HOME}/archilab-backup/restore-docker-db-dump.sh" "${host_name}:\${HOME}/bin/"
 
-ssh "${host_name}" "mkdir -p ${backup_dir}"
+ssh "${host_name}" "mkdir --parents ${backup_dir}"
 
-scp -3 "archilab-nas:${backup_dir}/${stack_service}_${backup_date}.sql" "${host_name}:${backup_dir}/"
+scp -3 "archilab-nas:${backup_dir}/${stack_service}_${backup_date}.sql" \
+    "${host_name}:${backup_dir}/"
 
-ssh "${host_name}" "\${HOME}/bin/restore-docker-db-dump.sh" "${host_name}" "${stack_name}" "${service_name}" "${db_user}" "${db_name}" "${backup_date}"
+ssh "${host_name}" "\${HOME}/bin/restore-docker-db-dump.sh" "${host_name}" \
+    "${stack_name}" "${service_name}" "${db_user}" "${db_name}" "${backup_date}"
 
 ssh "${host_name}" "rm ${backup_dir}/*"
