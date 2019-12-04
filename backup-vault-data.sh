@@ -6,7 +6,7 @@ backup_file="${backup_dir}/vault_${current_date}.tar.gz"
 vault_host="archilab-vault"
 nas_host="archilab-nas"
 
-ssh "${vault_host}" << EOF
+ssh "${vault_host}" <<EOF
     mkdir -p "${backup_dir}"
     sudo systemctl stop vault vault-unseal
     sudo tar --create --preserve-permissions --file="${backup_file}" --gzip \

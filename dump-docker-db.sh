@@ -17,4 +17,4 @@ mkdir --parents "${backup_dir}"
 {
   docker exec "${stack_service_instance}.${task_id}" \
     pg_dump --username="${db_user}" --clean "${db_name}"
-} > "${backup_dir}/${stack_service}_${current_date}.sql"
+} >"${backup_dir}/${stack_service}_${current_date}.sql"

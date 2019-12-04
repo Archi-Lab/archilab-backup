@@ -15,4 +15,4 @@ backup_dir="${HOME}/${host_name}/${stack_name}/${service_name}"
 {
   docker exec -i "${stack_service_instance}.${task_id}" \
     psql --username "${db_user}" "${db_name}"
-} < "${backup_dir}/${stack_service}_${backup_date}.sql"
+} <"${backup_dir}/${stack_service}_${backup_date}.sql"

@@ -10,7 +10,7 @@ ssh "${vault_host}" "mkdir --parents ${backup_dir}"
 
 scp -3 "${nas_host}:${backup_file}" "${vault_host}:${backup_file}"
 
-ssh "${vault_host}" << EOF
+ssh "${vault_host}" <<EOF
     sudo systemctl stop vault vault-unseal
     sudo rm --recursive --force /var/lib/vault
     sudo mkdir --parents /var/lib/vault
