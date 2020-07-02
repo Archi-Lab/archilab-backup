@@ -10,10 +10,10 @@ source_configuration_docker="/etc/gitlab"
 source_dir="/media/data/backups/${current_date}"
 
 # Target
-target_dir="/homes/backup/archilab-gitlab"  
+target_dir="/volume1/homes/backup/archilab-gitlab"  
 
 # Hosts
-gitlab_host="gitlab" #"archilab-gitlab"
+gitlab_host="archilab-gitlab"
 nas_host="archilab-nas"
 
 # Create source dir
@@ -36,7 +36,7 @@ EOF
 echo "Saved backup to (Gitlab host): ${source_dir}"
 
 # Copy Backup files
-#scp -3 "${gitlab_host}:${source_dir}" "${nas_host}:${target_dir}"
+scp -3 -r "${gitlab_host}:${source_dir}" "${nas_host}:${target_dir}"
 
 echo "Saved backup to (NAS): ${target_dir}"
 
