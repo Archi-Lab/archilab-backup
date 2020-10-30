@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
+set -o errexit -o nounset -o pipefail
 
 current_date="$(date +%Y_%m_%d_%H_%M_%S)"
 
 # Source Docker
 source_data_docker="/var/opt/gitlab/backups/dump_gitlab_backup.tar"
-source_configuration_docker="/etc/gitlab" 
+source_configuration_docker="/etc/gitlab"
 
 # Source
 source_dir="/media/data/backups/${current_date}"
 
 # Target
-target_dir="/volume1/homes/backup/archilab-gitlab"  
+target_dir="/volume1/homes/backup/archilab-gitlab"
 
 # Hosts
 gitlab_host="archilab-gitlab"

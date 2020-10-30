@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -o errexit -o nounset -o pipefail
 
 current_date="$(date +%Y-%m-%d)"
 backup_dir="\${HOME}/vault"
