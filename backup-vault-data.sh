@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -o errexit -o nounset -o pipefail
 
-current_date="$(date +%Y-%m-%d)"
+current_date="$(date +%Y-%m-%d_%H-%M-%S)"
 backup_dir="\${HOME}/vault"
 backup_file="${backup_dir}/vault_${current_date}.tar.gz"
 vault_host="archilab-vault"

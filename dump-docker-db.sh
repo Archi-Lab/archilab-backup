@@ -10,7 +10,7 @@ instance_number=1
 stack_service="${stack_name}_${service_name}"
 stack_service_instance="${stack_service}.${instance_number}"
 task_id="$(docker service ps ${stack_service} -q --no-trunc | head -n1)"
-current_date="$(date +%Y-%m-%d)"
+current_date="$(date +%Y-%m-%d_%H-%M-%S)"
 backup_dir="${HOME}/${host_name}/${stack_name}/${service_name}"
 
 mkdir --parents "${backup_dir}"
