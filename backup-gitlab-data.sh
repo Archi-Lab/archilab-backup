@@ -8,7 +8,8 @@ source_data_docker="/var/opt/gitlab/backups/dump_gitlab_backup.tar"
 source_configuration_docker="/etc/gitlab"
 
 # Source
-source_dir="/media/data/backups/${current_date}"
+source_root_dir="/media/data/backups/tmp"
+source_dir="${source_root_dir}/${current_date}"
 
 # Target
 target_dir="/volume1/homes/backup/archilab-gitlab"
@@ -17,7 +18,11 @@ target_dir="/volume1/homes/backup/archilab-gitlab"
 gitlab_host="archilab-gitlab"
 nas_host="archilab-nas"
 
-# Create source dir
+# Delete old source
+echo "Delete old source dir: ${source_root_dir}"
+ssh "${gitlab_host}" "rm -rf ${source_root_dir}"
+
+# Create source
 echo "Create source dir: ${source_dir}"
 ssh "${gitlab_host}" "mkdir --parents ${source_dir}"
 
@@ -40,11 +45,6 @@ echo "Saved backup to (Gitlab host): ${source_dir}"
 scp -3 -r "${gitlab_host}:${source_dir}" "${nas_host}:${target_dir}"
 
 echo "Saved backup to (NAS): ${target_dir}"
-
-# Delete source dir
-ssh "${gitlab_host}" "rm -r ${source_dir}"
-
-echo "Deleted (Gitlab host): ${source_dir}"
 
 # Delete old backups
 ssh "${nas_host}" << EOF
